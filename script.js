@@ -2,6 +2,7 @@ const yesBtn = document.querySelector(".yes-btn");
 const noBtn = document.querySelector(".no-btn");
 const question = document.querySelector(".question");
 const gif = document.querySelector(".gif");
+let noClickCount = 0; // Counter to track "No" button clicks
 
 // Change text and gif when the Yes button is clicked
 yesBtn.addEventListener("click", () => {
@@ -24,4 +25,14 @@ noBtn.addEventListener("mouseover", () => {
 
   noBtn.style.left = randomX + "px";
   noBtn.style.top = randomY + "px";
+});
+
+// Add an event listener to track "No" button clicks
+noBtn.addEventListener("click", () => {
+  noClickCount++; // Increment click count
+  if (noClickCount === 5) {
+    // Show popup after 5 clicks
+    alert("you newbie, haath nhi dukh rhe kya?");
+    noClickCount = 0; // Reset click count after showing the popup
+  }
 });
