@@ -13,11 +13,12 @@ body {
 }
 
 .wrapper {
-    position: relative;
+    position: relative; /* Allows the button to move inside this container */
     width: 100%;
     max-width: 400px;
-    height: 400px; /* Ensure the wrapper has a fixed height */
+    height: 400px; /* Ensures there is enough space for the button to move */
     text-align: center;
+    border: 1px solid #ccc; /* Just for visualization */
 }
 
 h2 {
@@ -56,6 +57,7 @@ button.yes-btn {
 button.no-btn {
     background: white;
     color: #e94d58;
-    position: absolute; /* Allow absolute positioning */
-    /* Removed left: 50% and transform to prevent conflict */
+    position: absolute; /* This allows movement inside the wrapper */
+    left: 0; /* Initial left position */
+    top: 0;  /* Initial top position */
 }
