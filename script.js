@@ -2,6 +2,7 @@ const yesBtn = document.querySelector(".yes-btn");
 const noBtn = document.querySelector(".no-btn");
 const question = document.querySelector(".question");
 const gif = document.querySelector(".gif");
+let noClickCount = 0; // Counter to track "No" button clicks
 
 // Change text and gif when the Yes button is clicked
 yesBtn.addEventListener("click", () => {
@@ -10,7 +11,10 @@ yesBtn.addEventListener("click", () => {
 });
 
 // Make the No button move randomly on hover
-noBtn.addEventListener("mouseover", () => {
+noBtn.addEventListener("mouseover", moveButtonFast);
+
+// Function to move the "No" button quickly
+function moveButtonFast() {
   const wrapper = document.querySelector(".wrapper");
   const wrapperRect = wrapper.getBoundingClientRect();
   const noBtnRect = noBtn.getBoundingClientRect();
@@ -19,9 +23,21 @@ noBtn.addEventListener("mouseover", () => {
   const maxX = wrapperRect.width - noBtnRect.width;
   const maxY = wrapperRect.height - noBtnRect.height;
 
-  const randomX = Math.floor(Math.random() * maxX);
-  const randomY = Math.floor(Math.random() * maxY);
+  // Move quickly by generating new random positions on each trigger
+  const randomX = Math.random() * maxX;
+  const randomY = Math.random() * maxY;
 
   noBtn.style.left = randomX + "px";
   noBtn.style.top = randomY + "px";
+}
+
+// Add an event listener to track "No" button clicks
+noBtn.addEventListener("click", () => {
+  noClickCount++; // Increment click count
+  console.log("No button clicked: ", noClickCount); // Debugging to check the count
+  if (noClickCount === 5) {
+    // Show popup after 5 clicks
+    alert("you newbie, haath nhi dukh rhe kya?");
+    noClickCount = 0; // Reset click count after showing the popup
+  }
 });
